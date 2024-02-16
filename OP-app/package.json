@@ -4,19 +4,13 @@
   "description": "markdown",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/lazyBoy1998/OP.git"
-  },
-  "keywords": [
-    "op"
-  ],
+  "repository": "git@github.com:lazyBoy1998/OP.git",
   "author": "Anthony",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lazyBoy1998/OP/issues"
-  },
-  "homepage": "https://github.com/lazyBoy1998/OP#readme"
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/publisher-github": "^7.2.0",
+    "electron": "^28.2.3"
+  }
 }
