@@ -31,16 +31,36 @@ const createWindow = () => {
             }
           })
           newWin.on('close',()=>{
+            console.log('close')
             newWin=null
           })
         }
-      }]
-    }
+      },
+      {
+        label: '退出',
+        accelerator: 'ctrl+Q', // 菜单的快捷键
+        click:()=>{
+          app.quit()
+        }
+    
+    }]
+    },{
+      label: 'Dev Tools', // 打开开发者工具
+      accelerator: (function() {
+        if (process.platform === 'darwin') { return 'Alt+Command+I' } else { return 'Ctrl+w' }
+      })(),
+      click: function(item, focusedWindow) {
+        if (focusedWindow) { focusedWindow.toggleDevTools() }
+      }
+    },{label: '菜单'}
   ]
   // 根据配置信息创建 menu 对象
   var menuObj=Menu.buildFromTemplate(menuTemplete)
   // 将对象作用当当前应用中
   Menu.setApplicationMenu(menuObj)
+// 开启渲染进程中的调试模式
+  // win.webContents.openDevTools()
+
 }
 
 app.whenReady().then(() => {
