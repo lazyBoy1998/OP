@@ -30,11 +30,15 @@ const createWindow = () => {
               enableRemoteModule: true // enableRemoteModule保证renderer.js可以可以正常require('electron').remote，此选项默认关闭且网上很多资料没有提到
             }
           })
+          // const pagePath = path.resolve(__dirname, './src/html/subPage.html')
+          // newWin.loadFile(pagePath)
           newWin.on('close',()=>{
             console.log('close')
             newWin=null
           })
         }
+      },{
+        type: 'separator'
       },
       {
         label: '退出',
@@ -44,7 +48,32 @@ const createWindow = () => {
         }
     
     }]
-    },{
+    },
+    {
+      label: '编辑',
+      submenu:[
+        {
+          label:'复制',
+          role: 'copy',
+          click(){
+            console.log('copy')
+          }
+        },
+        {
+            label: '剪切',
+            role: 'cut'
+        },
+        {
+            label:'粘贴',
+            role: 'paste'
+        },
+        {
+          label:'最小化',
+          role: 'minimize'
+      },
+      ]
+    },
+    {
       label: 'Dev Tools', // 打开开发者工具
       accelerator: (function() {
         if (process.platform === 'darwin') { return 'Alt+Command+I' } else { return 'Ctrl+w' }
@@ -52,7 +81,12 @@ const createWindow = () => {
       click: function(item, focusedWindow) {
         if (focusedWindow) { focusedWindow.toggleDevTools() }
       }
-    },{label: '菜单'}
+    },
+    {label: '菜单'},
+    {
+      label: '关于',
+      role: 'about'
+    }
   ]
   // 根据配置信息创建 menu 对象
   var menuObj=Menu.buildFromTemplate(menuTemplete)
